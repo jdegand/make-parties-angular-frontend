@@ -1,0 +1,21 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/*
+.mat-mdc-raised-button.mat-warn  {
+    background-color: #15a2b8;
+}
+*/
+
+.warn-button {
+    background-color: #15a2b8;
+    margin-right: 10px;
+}
+
+.event-section {
+    display: grid;
+    place-items: center;
+}

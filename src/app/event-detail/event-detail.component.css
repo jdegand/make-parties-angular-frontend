@@ -1,0 +1,34 @@
+.events-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: flex-start;
+    gap: 50px;
+    margin: 20px auto 0 auto;
+}
+
+.event-card {
+    border: 1px solid rgb(0,0,0,0.5);
+}
+
+.edit-button,
+.rsvp-button {
+    color: #0000EE;
+}
+
+.rsvp-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid;
+    padding: 8px;
+}
+
+.rsvp-item-name {
+    margin: 0;
+}
+
+.rsvps-header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

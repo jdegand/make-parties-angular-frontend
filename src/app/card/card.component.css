@@ -1,0 +1,20 @@
+.event-card {
+    border: 1px solid lightslategray;
+    margin: 0 0 40px 0;
+}
+
+.rsvp-button {
+    background-color: #15a2b8;
+    color: #fff;
+}
+
+.view-button {
+    margin-left: 10px;
+    background-color: #3f51b5;
+    color: #fff;
+}
+
+.last-event-card {
+    border: 1px solid lightslategray;
+    margin: 0;
+}

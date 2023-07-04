@@ -1,0 +1,19 @@
+<section class="events-section">
+    <h2>Events</h2>
+    <section class="events-list-section">
+       <div *ngFor="let event of event$ | async; let last = last ">
+        <app-card [last]="last" [eventInfo]="event"></app-card>
+       </div> 
+    </section>
+</section>
+
+<!--
+<section class="events-section">
+    <h2>Events</h2>
+    <section class="events-list-section">
+       <div *ngFor="let event of events">
+        <app-card [eventInfo]="event"></app-card>
+       </div> 
+    </section>
+</section>
+-->

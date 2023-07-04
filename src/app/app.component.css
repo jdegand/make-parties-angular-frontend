@@ -1,0 +1,16 @@
+.container {
+    max-width:1000px;
+    margin: 0 auto;
+    min-height: 85%;
+    overflow-y: scroll;
+}
+
+/*
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: flex-start;
+    min-height: 85%;
+    overflow-y: scroll;
+}
+*/

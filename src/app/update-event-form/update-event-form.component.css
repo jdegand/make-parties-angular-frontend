@@ -1,0 +1,10 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.update-event-section {
+    display: grid;
+    place-items: center;
+}

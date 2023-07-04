@@ -1,0 +1,21 @@
+.mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+
+.mat-toolbar-left {
+    display: flex;
+}
+
+.mat-toolbar-left-h1 {
+    margin: 0;
+    margin-right: 10px;
+}
+
+.mat-mdc-unelevated-button.mat-unthemed {
+    background-color: transparent;
+}

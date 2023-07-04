@@ -1,0 +1,17 @@
+<!--could have two separate classes versus duplicating properties on different class - class only has to add one extra property -->
+<mat-card [ngClass]="!last ? 'event-card' : 'last-event-card'">
+  <img mat-card-image src={{eventInfo?.imgUrl}} alt="">
+  <img *ngIf="!eventInfo?.imgUrl" mat-card-image src="assets/image-not-found.png" alt="" />
+  <mat-card-header>
+    <mat-card-title>{{eventInfo?.title}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{eventInfo?.desc}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <a class="rsvp-button" mat-button href="/events/{{eventInfo?.eventId}}/{{eventInfo?.title}}/rsvp">Rsvp</a>
+    <a class="view-button" mat-button href="/event/{{eventInfo?.eventId}}/details">View</a>
+  </mat-card-actions>
+</mat-card>
