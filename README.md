@@ -11,7 +11,7 @@ A frontend designed to work with my [Spring Boot Make Parties backend](https://g
 ## Thoughts
 
 - I thought this would be a nice test of my Spring and Angular skills.
-- [MakeParties]((https://makeschool.org/mediabook/oa/tutorials/make-tweets/start-an-express-project-z9Y=/)) design translates well to them.
+- [MakeParties](https://makeschool.org/mediabook/oa/tutorials/make-tweets/start-an-express-project-z9Y=/) design translates well to them.
 - I adhered to the design of the MakeSchool tutorial and replicated it with slight differences.
 - I used standalone components except for the app component.
 - I used reactive forms and patchValue to set pre-filled values for the update event form.
