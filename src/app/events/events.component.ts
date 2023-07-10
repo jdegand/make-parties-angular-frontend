@@ -12,7 +12,10 @@ import { CardComponent } from '../card/card.component';
 })
 export class EventsComponent {
 
-  event$: any = undefined;
+  events: any = undefined;
+  error: any = undefined;
+
+  //event$: any = undefined;
 
   /*
   events = [{
@@ -39,7 +42,24 @@ export class EventsComponent {
   constructor(private eventsService: EventsService) { }
 
   ngOnInit() {
-    this.event$ = this.eventsService.getEvents();
+
+    //this.event$ = this.eventsService.getEvents();
+
+    // Using async pipe is fine -> closes subscription automatically / easy to implement / etc
+    // problem is trying to show something when it returns without data
+    // Ran into typing issues - the return value is an not array ? 
+
+    this.eventsService.getEvents().subscribe(
+      {
+        next: (data) => {
+          console.log(typeof data); // object -> problem because backend returns a list?
+          this.events = data;
+        },
+        error: (e) => this.error = e,
+        complete: () => console.info('complete')
+      }
+    );
+
   }
   
 }

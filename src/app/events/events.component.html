@@ -1,13 +1,36 @@
 <section class="events-section">
     <h2>Events</h2>
+
+    <section class="events-list-section">
+        <div *ngIf="error">
+            <h3>No Events Found</h3>
+        </div>
+        <div *ngFor="let event of events; let last = last ">
+         <app-card [last]="last" [eventInfo]="event"></app-card>
+        </div> 
+     </section>
+</section>
+
+<!-- 
+    <p>Async Pipe Implementation</p>
     <section class="events-list-section">
        <div *ngFor="let event of event$ | async; let last = last ">
         <app-card [last]="last" [eventInfo]="event"></app-card>
        </div> 
     </section>
-</section>
+-->
 
 <!--
+    <p>Problem events is not an array</p>
+    <ng-container *ngIf="event$ | async as events">
+        <div *ngFor="let event of events; let last = last">
+          <app-card [last]="last" [eventInfo]="event"></app-card>
+        </div>
+    </ng-container>
+-->
+
+<!--
+<p>Mock Data Implementation</p>
 <section class="events-section">
     <h2>Events</h2>
     <section class="events-list-section">

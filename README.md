@@ -38,6 +38,7 @@ A frontend designed to work with my [Spring Boot Make Parties backend](https://g
 - I changed the backend to send JSON, and now it works as intended. 
 - Could cap the event's image width to an even smaller amount - need object-fit:cover to preserve aspect ratio of image.
 - I used a mat-card-image attribute on each event image.
+- Changed from async pipe to regular subscription in events component.  With async pipe, it is more difficult to show a message when the subscription returns no data. 
 
 ## Continued Development
 
@@ -71,3 +72,7 @@ A frontend designed to work with my [Spring Boot Make Parties backend](https://g
 - [Stack Overflow](https://stackoverflow.com/questions/53539728/how-to-validate-date-in-the-format-mm-dd-yyyy-in-spring-boot) - how to validate date in mm-dd-yyyy format
 - [Stack Overflow](https://stackoverflow.com/questions/46502294/angular-change-matinput-size) - matinput size
 - [Stack Overflow](https://stackoverflow.com/questions/35269179/angular-conditional-class-with-ngclass) - ngClass
+- [Blog](https://blog.bitsrc.io/6-ways-to-unsubscribe-from-observables-in-angular-ab912819a78f) - 6 ways to unsubscribe
+- [YouTube](https://www.youtube.com/watch?v=ddyxKtfOMqU) - takeUntilDestroyed
+- [Stack Overflow](https://stackoverflow.com/questions/56767679/should-i-unsubscribe-after-a-complete) - should I unsubscribe after a complete
+- [Stack Overflow](https://stackoverflow.com/questions/52198240/rxjs-difference-between-complete-and-unsubscribe-in-observable) - complete and unsubscribe difference
