@@ -14,5 +14,5 @@
 @media (min-width: 1200px) {
     .events-section {
         grid-column: 2;
-    };
+    }
 }
