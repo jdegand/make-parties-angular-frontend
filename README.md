@@ -41,6 +41,9 @@ A frontend designed to work with my [Spring Boot Make Parties backend](https://g
 - Changed from async pipe to regular subscription in events component.  With async pipe, it is more difficult to show a message when the subscription returns no data. 
 - Angular 16 doesn't initialize a karma config file anymore.  Need to use `ng generate config karma`.
 - Use `xdescribe` to skip a test block. Use `xit` to skip an individual test. 
+- Old angular testing code used compileComponents() after TestBed.configureTestingModule() method.  Seems like this is no longer required ?
+- Replaced and removed karma-chrome-launcher
+- Added `codeCoverage: true` to angular.json 
 
 ## Continued Development
 
@@ -83,3 +86,12 @@ A frontend designed to work with my [Spring Boot Make Parties backend](https://g
 - [Angular Docs](https://angular.io/guide/testing-services) - testing services
 - [Blog](https://offering.solutions/blog/articles/2017/10/02/testing-an-angular-http-service/) - testing an angular http service
 - [Stack Overflow](https://stackoverflow.com/questions/59676310/get-element-by-attribute-name-angular-testing) - get element by attribute name angular testing
+- [Concrete Page](https://www.concretepage.com/angular/angular-testbed-compilecomponents) - compileComponents()
+- [Blog](https://danielk.tech/home/how-to-test-reactive-angular-forms) - how to test reactive angular forms
+- [Stack Overflow](https://stackoverflow.com/questions/50863422/angular-5-ng-test-please-include-either-browseranimationsmodule-or-noopan) - BrowserAnimationsModule
+- [Stack Overflow](https://stackoverflow.com/questions/40093013/unit-testing-click-event-in-angular) - angular test click event
+- [Stack Overflow](https://stackoverflow.com/questions/73361624/angular-unit-test-how-to-test-reactive-form-reset-method) - reactive form reset method
+- [Testing Angular](https://testing-angular.com/testing-complex-forms/) - testing complex forms
+- [Gitbook](https://baldur.gitbook.io/angular/angular-test/testing/angular-testing/spyon) - spyOn
+- [Stack Overflow](https://stackoverflow.com/questions/64061277/why-my-mocked-service-property-is-undefined-in-jasmine-unit-test) - mocked service property is undefined
+- [Stack Overflow](https://stackoverflow.com/questions/39960146/testing-error-case-with-observables-in-services) - testing error case with observables in services

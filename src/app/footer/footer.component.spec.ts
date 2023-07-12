@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
-  let links: DebugElement;
+  let links: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,4 +21,10 @@ describe('FooterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have two links', () => {
+    links = fixture.nativeElement.querySelectorAll('a');
+    expect(links.length).toBe(2);
+  });
+
 });
