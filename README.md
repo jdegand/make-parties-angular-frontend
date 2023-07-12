@@ -39,6 +39,8 @@ A frontend designed to work with my [Spring Boot Make Parties backend](https://g
 - Could cap the event's image width to an even smaller amount - need object-fit:cover to preserve aspect ratio of image.
 - I used a mat-card-image attribute on each event image.
 - Changed from async pipe to regular subscription in events component.  With async pipe, it is more difficult to show a message when the subscription returns no data. 
+- Angular 16 doesn't initialize a karma config file anymore.  Need to use `ng generate config karma`.
+- Use `xdescribe` to skip a test block. Use `xit` to skip an individual test. 
 
 ## Continued Development
 
@@ -76,3 +78,8 @@ A frontend designed to work with my [Spring Boot Make Parties backend](https://g
 - [YouTube](https://www.youtube.com/watch?v=ddyxKtfOMqU) - takeUntilDestroyed
 - [Stack Overflow](https://stackoverflow.com/questions/56767679/should-i-unsubscribe-after-a-complete) - should I unsubscribe after a complete
 - [Stack Overflow](https://stackoverflow.com/questions/52198240/rxjs-difference-between-complete-and-unsubscribe-in-observable) - complete and unsubscribe difference
+- [YouTube](https://www.youtube.com/watch?v=emnwsVy8wRs&list=PLoC8Q0moRTSiTBAKWBGiJjFUMpiFdaGdF&index=1&pp=iAQB) - Introduction | Angular Unit Testing
+- [YouTube](https://www.youtube.com/watch?v=15othucRXcI) - 30. Testing Services which has HttpClient as dependency by using Jasmine Spy - Angular Unit testing
+- [Angular Docs](https://angular.io/guide/testing-services) - testing services
+- [Blog](https://offering.solutions/blog/articles/2017/10/02/testing-an-angular-http-service/) - testing an angular http service
+- [Stack Overflow](https://stackoverflow.com/questions/59676310/get-element-by-attribute-name-angular-testing) - get element by attribute name angular testing
