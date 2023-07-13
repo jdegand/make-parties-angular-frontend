@@ -73,7 +73,6 @@ describe('EventFormComponent', () => {
     expect(submitBtn.disabled).toBe(true);
   })
 
-  /*
   it('submit button changes to enabled', ()=> {
 
     component.eventInfo.setValue({
@@ -83,11 +82,17 @@ describe('EventFormComponent', () => {
       "takesPlaceOn": "2023-07-31"
     });
 
+    fixture.detectChanges();
+
     let submitBtn = el.nativeElement.querySelector('button[type="submit"]');
 
-    expect(submitBtn.properties.disabled).toBe(false);
-
+    expect(submitBtn.disabled).toBe(false);
   })
-  */
+
+  it('cancel()', ()=> {
+    const spyformReset = spyOn(component.eventInfo, 'reset').and.callThrough();
+    component.cancel();
+    expect(spyformReset).toHaveBeenCalled();
+  });
 
 });

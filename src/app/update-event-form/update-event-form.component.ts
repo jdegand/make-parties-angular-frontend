@@ -34,7 +34,7 @@ export class UpdateEventFormComponent {
 
     if(this.eventId !==  null){
       await this.getEvent(this.eventId);
-      console.log(this.previousEventInfo);
+      //console.log(this.previousEventInfo);
     }
   }
 
@@ -68,7 +68,7 @@ export class UpdateEventFormComponent {
   }
 
   submit(){
-    console.log(this.updatedEventInfo);
+    //console.log(this.updatedEventInfo);
 
     if(this.eventId && this.updatedEventInfo.valid){
       this.eventsService.updateEvent(this.eventId, this.updatedEventInfo.value).subscribe({

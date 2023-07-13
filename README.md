@@ -95,3 +95,8 @@ A frontend designed to work with my [Spring Boot Make Parties backend](https://g
 - [Gitbook](https://baldur.gitbook.io/angular/angular-test/testing/angular-testing/spyon) - spyOn
 - [Stack Overflow](https://stackoverflow.com/questions/64061277/why-my-mocked-service-property-is-undefined-in-jasmine-unit-test) - mocked service property is undefined
 - [Stack Overflow](https://stackoverflow.com/questions/39960146/testing-error-case-with-observables-in-services) - testing error case with observables in services
+- [Stack Overflow](https://stackoverflow.com/questions/45917883/how-do-you-mock-activatedroute) - activatedRoute mock
+- [Stack Overflow](https://stackoverflow.com/questions/39791773/how-can-i-unit-test-a-component-that-uses-the-router-in-angular) - unit test a component that uses router
+- [Stack Overflow](https://stackoverflow.com/questions/48024481/angular-unit-test-if-component-method-is-called-according-to-a-data-from-a-servi) - angular unit test if component method is called
+- [Stack Overflow](https://stackoverflow.com/questions/40093013/unit-testing-click-event-in-angular) - unit test click event in angular
+- [YouTube](https://www.youtube.com/playlist?list=PLqQyE6QNucSfUIpucL_nx7vDuwAa1A_VH) - Angular Unit Testing
