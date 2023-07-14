@@ -1,12 +1,97 @@
 # Make Parties Angular Frontend
 
-A frontend designed to work with my [Spring Boot Make Parties backend](https://github.com/jdegand/make-parties-spring-backend).   
+A frontend designed to work with my [Spring Boot Make Parties backend](https://github.com/jdegand/make-parties-spring-backend).  
+
+## Screenshots
+
+![](screenshots/angular-frontend-coverage.png)
+
+***
+
+![](screenshots/angular-frontend-10.png)
+
+***
+
+![](screenshots/angular-frontend-11.png)
+
+***
+
+![](screenshots/angular-frontend-12.png "mobile")
+
+***
+
+![](screenshots/angular-frontend-13.png)
+
+***
+
+![](screenshots/angular-frontend-14.png "mobile")
+
+***
+
+![](screenshots/angular-frontend-15.png)
+
+***
+
+![](screenshots/angular-frontend-16.png)
+
+***
+
+![](screenshots/angular-frontend-17.png "mobile")
+
+***
+
+![](screenshots/angular-frontend-18.png "mobile 50% zoom")
+
+***
+
+![](screenshots/angular-frontend-19.png)
+
+***
 
 ## Built With
 
 - [Angular](https://angular.io)
 - [Angular CLI](https://github.com/angular/angular-cli) - version 16.0.1.
 - [Angular Material](https://material.angular.io/)
+
+## How to Use
+
+The Spring Boot application runs by default on `localhost:8080` and has the following endpoints:
+
+ - `http://localhost:8080/events` - GET / POST
+ - `http://localhost:8080/events/${id}` - GET / PUT / DELETE
+ - `http://localhost:8080/events/${eventId}/rsvps` - POST
+ - `http://localhost:8080/events/${eventId}/rsvps/${rsvpId}` - DELETE 
+
+### Running the Spring Boot Backend Application
+
+```bash 
+
+git clone https://github.com/jdegand/make-parties-spring-backend.git
+
+# configured with maven - run the scripts included with the repo 
+
+```
+
+### Running the Angular Application
+
+Run the backend first.  Use two terminals.  
+
+```bash
+
+git clone https://github.com/jdegand/make-parties-angular-frontend.git
+
+# cd into the directory
+npm install 
+
+npm start
+
+# Tests - firefox launcher is included - need to install a karma launcher that matches your browser  
+
+ng test
+
+```
+
 
 ## Thoughts
 
@@ -39,16 +124,19 @@ A frontend designed to work with my [Spring Boot Make Parties backend](https://g
 - Could cap the event's image width to an even smaller amount - need object-fit:cover to preserve aspect ratio of image.
 - I used a mat-card-image attribute on each event image.
 - Changed from async pipe to regular subscription in events component.  With async pipe, it is more difficult to show a message when the subscription returns no data. 
+- I show a 'Could not connect to server' message when an error occurs and I show a 'No events found' message when the backend database has no entries.  
 - Angular 16 doesn't initialize a karma config file anymore.  Need to use `ng generate config karma`.
 - Use `xdescribe` to skip a test block. Use `xit` to skip an individual test. 
 - Old angular testing code used compileComponents() after TestBed.configureTestingModule() method.  Seems like this is no longer required ?
 - Replaced and removed karma-chrome-launcher
 - Added `codeCoverage: true` to angular.json 
+-  I used window.location.reload in the event-detail component.  During testing, this causes a infinite loop.  I moved the call to window.location.reload into a reloadPage function.  Then I could mock that function to return nothing so that all tests run with no problems. 
+- Problem with update-event-form getEvent() error test - can fail depending on the random order of tests?
 
 ## Continued Development
 
 - TypeScript improvements
-- Cypress / Testing
+- Cypress
 - Custom Validator for min Date
 - Styling tweaks
 - Accessibility concerns
@@ -107,3 +195,4 @@ A frontend designed to work with my [Spring Boot Make Parties backend](https://g
 - [Stack Overflow](https://stackoverflow.com/questions/27306194/mock-window-location-reload-in-jasmine-testing) - mock window location reload in jasmine testing
 - [Stack Overflow](https://stackoverflow.com/questions/68607971/how-to-unit-test-window-location-reload-in-angular-12-unit-testing) - window location reload
 - [Stack Overflow](https://stackoverflow.com/questions/72138851/jasmine-window-location-reload-in-ngondestroy) - location reload
+- [Dev.to](https://dev.to/angular/understanding-async-tests-in-angular-f8n) - async tests in angular

@@ -56,7 +56,6 @@ describe('EventDetailComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  /*
   it('getEvent()', () => {
     mockEvent = {
       "eventId": "1",
@@ -75,8 +74,6 @@ describe('EventDetailComponent', () => {
 
     component.eventId = "1";
 
-    fixture.detectChanges();
-
     mockEventsService.getEventById.and.returnValue(of(mockEvent));
 
     component.getEvent("1");
@@ -85,7 +82,6 @@ describe('EventDetailComponent', () => {
 
     expect(mockEventsService.getEventById).toHaveBeenCalled();
   })
-  */
 
   it('getEvent() error', () => {
     mockEvent = {
@@ -209,6 +205,38 @@ describe('EventDetailComponent', () => {
     spyOn(fixture.componentInstance, 'reloadPage').and.callFake(() => null);
 
     //window.location.reload = () => null;
+
+    component.deleteRsvp('1','1');
+
+    fixture.detectChanges();
+
+    expect(mockRsvpService.deleteRsvp).toHaveBeenCalled();
+  })
+
+  it('deleteRsvp() error', () => {
+
+    mockEvent = {
+      "eventId": "1",
+      "title": "BBQ",
+      "desc": "Ribs!!!",
+      "imgUrl": "https://picsum.photos/200/200",
+      "takesPlaceOn": new Date("2023-09-09"),
+      "createdAt": "",
+      "updatedAt": "",
+      "rsvps": [{
+        "rsvpId": "1",
+        "name": "Jim",
+        "email": "jim@gmail.com"
+      }]
+    };
+
+    mockEventsService.getEventById.and.returnValue(of(mockEvent));
+
+    fixture.detectChanges();
+
+    expect(component.event).toEqual(mockEvent);
+
+    mockRsvpService.deleteRsvp.and.returnValue(throwError(()=> new Error()));
 
     component.deleteRsvp('1','1');
 

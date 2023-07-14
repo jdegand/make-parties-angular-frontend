@@ -37,8 +37,8 @@ describe('UpdateEventFormComponent', () => {
         {
           provide: EventsService, useValue: mockEventsService
         },
-        { 
-          provide: ActivatedRoute, useValue: mockActivatedRoute 
+        {
+          provide: ActivatedRoute, useValue: mockActivatedRoute
         },
         {
           provide: Router, useValue: mockRouter
@@ -54,7 +54,7 @@ describe('UpdateEventFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('cancel()', ()=> {
+  it('cancel()', () => {
     const spyformReset = spyOn(component.updatedEventInfo, 'reset').and.callThrough();
     component.cancel();
     expect(spyformReset).toHaveBeenCalled();
@@ -85,21 +85,12 @@ describe('UpdateEventFormComponent', () => {
     expect(component.previousEventInfo).toEqual(mockPreviousEvent);
   })
 
-    it('getEvent() error', () => {
-    mockPreviousEvent = {
-      "eventId": "1",
-      "title": "BBQ",
-      "desc": "Ribs!!!",
-      "imgUrl": "https://picsum.photos/200/200",
-      "takesPlaceOn": new Date("2023-09-09"),
-      "createdAt": "", // update to real timestamp
-      "updatedAt": "",
-      "rsvps": [{
-        "rsvpId": "1",
-        "name": "Jim",
-        "email": "jim@gmail.com"
-      }]
-    };
+  it('getEvent() error', async () => {
+
+    // problem with this test - sometimes works / sometimes fails
+    // async error or another test is affecting this test or bad comparison
+
+    const initialValue = component.previousEventInfo;
 
     mockEventsService.getEventById.and.returnValue(throwError(() => new Error()));
 
@@ -107,10 +98,12 @@ describe('UpdateEventFormComponent', () => {
 
     fixture.detectChanges();
 
-    expect(component.previousEventInfo).toBe(undefined);
+    await fixture.whenStable();
+
+    expect(component.previousEventInfo).toEqual(initialValue);
   })
 
-  it('submit()', ()=> {
+  it('submit()', () => {
 
     // need to check return values of real post to make sure all properties are added to mock
     let mockPost = {
@@ -139,16 +132,7 @@ describe('UpdateEventFormComponent', () => {
     expect(mockEventsService.updateEvent).toHaveBeenCalled();
   })
 
-  it('submit() error', ()=> {
-
-    // need to check return values of real post to make sure all properties are added to mock
-    let mockPost = {
-      "eventId": "1",
-      "title": "pneumonoultra",
-      "desc": "",
-      "imgUrl": "",
-      "takesPlaceOn": "2023-07-31"
-    }
+  it('submit() error', () => {
 
     component.updatedEventInfo.setValue({
       "title": "pneumonoultra",
@@ -166,6 +150,10 @@ describe('UpdateEventFormComponent', () => {
     fixture.detectChanges();
 
     expect(mockEventsService.updateEvent).toHaveBeenCalled();
+  })
+
+  afterEach(() => {
+    mockPreviousEvent = undefined;
   })
 
 });
