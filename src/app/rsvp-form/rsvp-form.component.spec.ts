@@ -5,6 +5,7 @@ import { RsvpService } from '../service/rsvp-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { of, throwError } from 'rxjs';
 
 describe('RsvpFormComponent', () => {
   let component: RsvpFormComponent;
@@ -58,6 +59,52 @@ describe('RsvpFormComponent', () => {
     component.cancel();
     expect(spyformReset).toHaveBeenCalled();
   });
+
+  it('submit()', ()=> {
+
+    let mockRsvp = {
+      "name" : "Alice",
+      "email": "alice@gmail.com"
+    }
+
+    component.rsvpInfo.setValue({
+      "name" : "Alice",
+      "email": "alice@gmail.com"
+    });
+
+    component.eventId = '1';
+
+    mockRsvpService.postRsvp.and.returnValue(of(mockRsvp));
+
+    component.submit();
+
+    fixture.detectChanges();
+
+    expect(mockRsvpService.postRsvp).toHaveBeenCalled();
+  })
+
+  it('submit() error', ()=> {
+
+    let mockRsvp = {
+      "name" : "Alice",
+      "email": "alice@gmail.com"
+    }
+
+    component.rsvpInfo.setValue({
+      "name" : "Alice",
+      "email": "alice@gmail.com"
+    });
+
+    component.eventId = '1';
+
+    mockRsvpService.postRsvp.and.returnValue(throwError(() => new Error()));
+
+    component.submit();
+
+    fixture.detectChanges();
+
+    expect(mockRsvpService.postRsvp).toHaveBeenCalled();
+  })
 
 
 });

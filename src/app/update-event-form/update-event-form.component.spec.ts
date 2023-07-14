@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EventsService } from '../service/events-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { of, throwError } from 'rxjs';
 
 describe('UpdateEventFormComponent', () => {
   let component: UpdateEventFormComponent;
@@ -25,6 +26,8 @@ describe('UpdateEventFormComponent', () => {
       },
     },
   };
+
+  let mockPreviousEvent: any;
 
   beforeEach(() => {
 
@@ -56,5 +59,113 @@ describe('UpdateEventFormComponent', () => {
     component.cancel();
     expect(spyformReset).toHaveBeenCalled();
   });
+
+  it('getEvent()', () => {
+    mockPreviousEvent = {
+      "eventId": "1",
+      "title": "BBQ",
+      "desc": "Ribs!!!",
+      "imgUrl": "https://picsum.photos/200/200",
+      "takesPlaceOn": new Date("2023-09-09"),
+      "createdAt": "", // update to real timestamp
+      "updatedAt": "",
+      "rsvps": [{
+        "rsvpId": "1",
+        "name": "Jim",
+        "email": "jim@gmail.com"
+      }]
+    };
+
+    mockEventsService.getEventById.and.returnValue(of(mockPreviousEvent));
+
+    component.getEvent("1");
+
+    fixture.detectChanges();
+
+    expect(component.previousEventInfo).toEqual(mockPreviousEvent);
+  })
+
+    it('getEvent() error', () => {
+    mockPreviousEvent = {
+      "eventId": "1",
+      "title": "BBQ",
+      "desc": "Ribs!!!",
+      "imgUrl": "https://picsum.photos/200/200",
+      "takesPlaceOn": new Date("2023-09-09"),
+      "createdAt": "", // update to real timestamp
+      "updatedAt": "",
+      "rsvps": [{
+        "rsvpId": "1",
+        "name": "Jim",
+        "email": "jim@gmail.com"
+      }]
+    };
+
+    mockEventsService.getEventById.and.returnValue(throwError(() => new Error()));
+
+    component.getEvent("6");
+
+    fixture.detectChanges();
+
+    expect(component.previousEventInfo).toBe(undefined);
+  })
+
+  it('submit()', ()=> {
+
+    // need to check return values of real post to make sure all properties are added to mock
+    let mockPost = {
+      "eventId": "1",
+      "title": "pneumonoultra",
+      "desc": "",
+      "imgUrl": "",
+      "takesPlaceOn": "2023-07-31"
+    }
+
+    component.updatedEventInfo.setValue({
+      "title": "pneumonoultra",
+      "desc": "",
+      "imgUrl": "",
+      "takesPlaceOn": "2023-07-31"
+    });
+
+    component.eventId = '1';
+
+    mockEventsService.updateEvent.and.returnValue(of(mockPost));
+
+    component.submit();
+
+    fixture.detectChanges();
+
+    expect(mockEventsService.updateEvent).toHaveBeenCalled();
+  })
+
+  it('submit() error', ()=> {
+
+    // need to check return values of real post to make sure all properties are added to mock
+    let mockPost = {
+      "eventId": "1",
+      "title": "pneumonoultra",
+      "desc": "",
+      "imgUrl": "",
+      "takesPlaceOn": "2023-07-31"
+    }
+
+    component.updatedEventInfo.setValue({
+      "title": "pneumonoultra",
+      "desc": "",
+      "imgUrl": "",
+      "takesPlaceOn": "2023-07-31"
+    });
+
+    component.eventId = '1';
+
+    mockEventsService.updateEvent.and.returnValue(throwError(() => new Error()));
+
+    component.submit();
+
+    fixture.detectChanges();
+
+    expect(mockEventsService.updateEvent).toHaveBeenCalled();
+  })
 
 });

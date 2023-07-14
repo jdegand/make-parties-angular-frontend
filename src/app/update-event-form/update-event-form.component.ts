@@ -42,12 +42,10 @@ export class UpdateEventFormComponent {
     title: this.builder.control('', [Validators.required]),
     desc: this.builder.control(''),
     imgUrl: this.builder.control(''),
-    takesPlaceOn: this.builder.control(''),
+    takesPlaceOn: this.builder.control('', [Validators.required]), // missed adding required for takesPlaceOn
   })
 
   async getEvent(eventId: String) {
-    //return this.eventsService.getEventById(eventId).subscribe(data => this.event = data);
-
     return this.eventsService.getEventById(eventId).subscribe(
       {
         next: (data) => {
@@ -68,8 +66,6 @@ export class UpdateEventFormComponent {
   }
 
   submit(){
-    //console.log(this.updatedEventInfo);
-
     if(this.eventId && this.updatedEventInfo.valid){
       this.eventsService.updateEvent(this.eventId, this.updatedEventInfo.value).subscribe({
         next: (v) => console.log(v),

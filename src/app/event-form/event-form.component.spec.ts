@@ -6,21 +6,24 @@ import { EventsService } from '../service/events-service.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DebugElement } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { of, throwError } from 'rxjs';
 
 describe('EventFormComponent', () => {
   let component: EventFormComponent;
   let fixture: ComponentFixture<EventFormComponent>;
   let el: DebugElement;
+  let mockEventsService = jasmine.createSpyObj('EventsService', ['postEvent']);
 
   // included animations with angular material although I didn't use any 
-  // Now need to include animations module to get tests to run
+  // Now I need to include animations module to get tests to run
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [EventFormComponent, ReactiveFormsModule, HttpClientModule, NoopAnimationsModule],
       providers: [HttpClient,
         {
-          provide: EventsService
+          provide: EventsService,
+          useValue: mockEventsService
         }
       ]
     });
@@ -87,6 +90,64 @@ describe('EventFormComponent', () => {
     let submitBtn = el.nativeElement.querySelector('button[type="submit"]');
 
     expect(submitBtn.disabled).toBe(false);
+  })
+
+  it('submit()', ()=> {
+
+    // need to check return values of real post to make sure all properties are added to mock
+    let mockPost = {
+      "eventId": "1",
+      "title": "pneumonoultra",
+      "desc": "",
+      "imgUrl": "",
+      "takesPlaceOn": "2023-07-31"
+    }
+
+    component.eventInfo.setValue({
+      "title": "pneumonoultra",
+      "desc": "",
+      "imgUrl": "",
+      "takesPlaceOn": "2023-07-31"
+    });
+
+    // mock service here
+
+    mockEventsService.postEvent.and.returnValue(of(mockPost));
+
+    component.submit();
+
+    fixture.detectChanges();
+
+    expect(mockEventsService.postEvent).toHaveBeenCalled();
+  })
+
+  it('submit() error', ()=> {
+
+    // need to check return values of real post to make sure all properties are added to mock
+    let mockPost = {
+      "eventId": "1",
+      "title": "pneumonoultra",
+      "desc": "",
+      "imgUrl": "",
+      "takesPlaceOn": "2023-07-31"
+    }
+
+    component.eventInfo.setValue({
+      "title": "pneumonoultra",
+      "desc": "",
+      "imgUrl": "",
+      "takesPlaceOn": "2023-07-31"
+    });
+
+    // mock service here
+
+    mockEventsService.postEvent.and.returnValue(throwError(() => new Error()));
+
+    component.submit();
+
+    fixture.detectChanges();
+
+    expect(mockEventsService.postEvent).toHaveBeenCalled();
   })
 
   it('cancel()', ()=> {

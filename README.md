@@ -100,3 +100,10 @@ A frontend designed to work with my [Spring Boot Make Parties backend](https://g
 - [Stack Overflow](https://stackoverflow.com/questions/48024481/angular-unit-test-if-component-method-is-called-according-to-a-data-from-a-servi) - angular unit test if component method is called
 - [Stack Overflow](https://stackoverflow.com/questions/40093013/unit-testing-click-event-in-angular) - unit test click event in angular
 - [YouTube](https://www.youtube.com/playlist?list=PLqQyE6QNucSfUIpucL_nx7vDuwAa1A_VH) - Angular Unit Testing
+- [Stack Overflow](https://stackoverflow.com/questions/42770027/how-do-i-check-for-a-console-log-in-karma-jasmine) - how do I check for a console log in karma jasmine
+- [Medium](https://jenijoe.medium.com/unit-testing-angular-crud-service-with-jasmine-7e40e7c8aa74) - unit testing angular crud service with jasmine
+- [Semaphore CI](https://semaphoreci.com/community/tutorials/testing-routes-in-angular-2) - testing routes
+- [Stack Overflow](https://stackoverflow.com/questions/55773888/how-to-unit-test-router-navigate-in-angular-app) - unit test router navigate in angular app
+- [Stack Overflow](https://stackoverflow.com/questions/27306194/mock-window-location-reload-in-jasmine-testing) - mock window location reload in jasmine testing
+- [Stack Overflow](https://stackoverflow.com/questions/68607971/how-to-unit-test-window-location-reload-in-angular-12-unit-testing) - window location reload
+- [Stack Overflow](https://stackoverflow.com/questions/72138851/jasmine-window-location-reload-in-ngondestroy) - location reload

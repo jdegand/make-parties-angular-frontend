@@ -52,7 +52,7 @@ export class EventsComponent {
     this.eventsService.getEvents().subscribe(
       {
         next: (data) => {
-          console.log(typeof data); // object -> problem because backend returns a list?
+          //console.log(typeof data); // object -> problem because backend returns a list?
           this.events = data;
         },
         error: (e) => this.error = e,

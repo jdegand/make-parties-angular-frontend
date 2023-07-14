@@ -22,6 +22,10 @@ export class EventDetailComponent {
 
   event: any = undefined;
 
+  reloadPage(){
+    window.location.reload();
+  }
+
   ngOnInit() {
     this.eventId = this.route.snapshot.paramMap.get("eventId");
 
@@ -45,7 +49,7 @@ export class EventDetailComponent {
       {
         next: (data) => console.log(data),
         error: (e) => console.error(e),
-        complete: () => window.location.reload()
+        complete: () => this.reloadPage()
       }
     );
   }
