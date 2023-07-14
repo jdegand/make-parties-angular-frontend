@@ -1,9 +1,9 @@
 .events-section {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     align-items: flex-start;
     gap: 50px;
-    margin: 20px auto 0 auto;
+    margin: 20px auto 50px auto;
 }
 
 .event-card {
@@ -31,4 +31,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@media(min-width: 1000px) {
+    .events-section {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 20px auto 0 auto;
+    }
 }

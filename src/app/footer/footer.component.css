@@ -1,9 +1,11 @@
-footer {
-    text-align:left;
-    position:fixed;
-    bottom:0;
-    width:100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center; 
+@media (min-width: 1000px){
+    footer {
+        text-align:left;
+        position:fixed;
+        bottom:0;
+        width:100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
+    }
 }

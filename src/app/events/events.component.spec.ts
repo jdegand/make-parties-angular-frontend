@@ -64,7 +64,7 @@ describe('EventsComponent', () => {
     
     const error = fixture.nativeElement.querySelector('h3');
 
-    expect(error.textContent).toEqual('No Events Found');
+    expect(error.textContent).toEqual('Could not connect to server.');
   });
 
 });

@@ -3,8 +3,9 @@
 
     <section class="events-list-section">
         <div *ngIf="error">
-            <h3>No Events Found</h3>
+            <h3>Could not connect to server.</h3>
         </div>
+        <div *ngIf="events?.length === 0">No events found.</div>
         <div *ngFor="let event of events; let last = last ">
          <app-card [last]="last" [eventInfo]="event"></app-card>
         </div> 
