@@ -4,7 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute, Router } from '@angular/router'; //RouterModule
+import { ActivatedRoute, Router } from '@angular/router';
 import { RsvpService } from '../service/rsvp-service.service';
 
 @Component({

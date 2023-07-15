@@ -8,18 +8,6 @@ describe('RsvpService', () => {
 
   let testingController: HttpTestingController;
 
-  const mockRsvps: any = [
-    {
-      "rsvpId": '1',
-      "name": "Alice",
-      "email": "alice@gmail.com",
-    }, {
-      "rsvpId": '2',
-      "name": "Missy",
-      "email": "missy@gmail.com",
-    }
-  ];
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule]

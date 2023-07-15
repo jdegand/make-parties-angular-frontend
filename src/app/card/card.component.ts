@@ -17,11 +17,4 @@ export class CardComponent {
 
   @Input() last: boolean | undefined;
 
-  /*
-  ngOnInit(){
-    console.log(this.eventInfo);
-    console.log(typeof this.eventInfo);
-  }
-  */
-
 }

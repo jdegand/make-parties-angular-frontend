@@ -85,11 +85,6 @@ describe('RsvpFormComponent', () => {
 
   it('submit() error', ()=> {
 
-    let mockRsvp = {
-      "name" : "Alice",
-      "email": "alice@gmail.com"
-    }
-
     component.rsvpInfo.setValue({
       "name" : "Alice",
       "email": "alice@gmail.com"

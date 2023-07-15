@@ -110,8 +110,6 @@ describe('EventFormComponent', () => {
       "takesPlaceOn": "2023-07-31"
     });
 
-    // mock service here
-
     mockEventsService.postEvent.and.returnValue(of(mockPost));
 
     component.submit();
@@ -123,23 +121,12 @@ describe('EventFormComponent', () => {
 
   it('submit() error', ()=> {
 
-    // need to check return values of real post to make sure all properties are added to mock
-    let mockPost = {
-      "eventId": "1",
-      "title": "pneumonoultra",
-      "desc": "",
-      "imgUrl": "",
-      "takesPlaceOn": "2023-07-31"
-    }
-
     component.eventInfo.setValue({
       "title": "pneumonoultra",
       "desc": "",
       "imgUrl": "",
       "takesPlaceOn": "2023-07-31"
     });
-
-    // mock service here
 
     mockEventsService.postEvent.and.returnValue(throwError(() => new Error()));
 

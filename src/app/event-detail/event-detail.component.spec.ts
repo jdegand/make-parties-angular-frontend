@@ -139,7 +139,6 @@ describe('EventDetailComponent', () => {
     fixture.detectChanges();
 
     expect(mockEventsService.deleteEvent).toHaveBeenCalled();
-
   })
 
   it('deleteEvent() error', () => {
@@ -172,7 +171,6 @@ describe('EventDetailComponent', () => {
     fixture.detectChanges();
 
     expect(mockEventsService.deleteEvent).toHaveBeenCalled();
-
   })
 
   it('deleteRsvp()', () => {
@@ -204,7 +202,7 @@ describe('EventDetailComponent', () => {
 
     spyOn(fixture.componentInstance, 'reloadPage').and.callFake(() => null);
 
-    //window.location.reload = () => null;
+    //window.location.reload = () => null; does not work
 
     component.deleteRsvp('1','1');
 
@@ -243,7 +241,6 @@ describe('EventDetailComponent', () => {
     fixture.detectChanges();
 
     expect(mockRsvpService.deleteRsvp).toHaveBeenCalled();
-
   })
 
   afterEach(() => {

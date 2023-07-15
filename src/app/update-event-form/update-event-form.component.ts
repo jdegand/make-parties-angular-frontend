@@ -34,7 +34,6 @@ export class UpdateEventFormComponent {
 
     if(this.eventId !==  null){
       await this.getEvent(this.eventId);
-      //console.log(this.previousEventInfo);
     }
   }
 
