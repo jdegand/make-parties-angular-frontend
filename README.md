@@ -92,7 +92,6 @@ ng test
 
 ```
 
-
 ## Thoughts
 
 - I thought this would be a nice test of my Spring and Angular skills.
@@ -102,13 +101,17 @@ ng test
 - I used reactive forms and patchValue to set pre-filled values for the update event form.
 - You could put services in sub-folders, ie `service/events/events.service.ts` and you could change the service names; the way I named them resulted in the class being initially called ApiServiceService.
 - I used mock data to work out some styling for event fields versus always having to have the spring backend running.  The mockData implementation is commented out in the events component.
-- Mostly had the backend complete (sans rsvps routes) when I started creating the frontend.
+- The backend was complete (sans rsvps routes) when I started creating the frontend.
 - I added validation first to the frontend and then applied that to the backend.
 - Made the footer and header fixed - added scroll for the events component's body.
 - There was overscroll at the end of events list because of margin placed between events -> used a last variable to remove the margin from the last of event-cards -> using :last-of-type did not work.
 - Used [lorem picsum](https://picsum.photos/) for placeholder image urls -> could use many other similar services or even upload your own images to cloudinary.
 - No validation for the image urls - placeholder image from Flaticon is displayed if user fails to provide an imgUrl.
-- I used async pipe for the events -> can be drawbacks to using async pipe -> See this [video](https://www.youtube.com/watch?v=Z9U9-VRN_XU) for more.
+- Could cap the event's image width to an even smaller amount - need object-fit:cover to preserve aspect ratio of image.
+- I used a mat-card-image attribute on each event image.
+- I originally used async pipe for the events component -> can be drawbacks to using async pipe -> See this [video](https://www.youtube.com/watch?v=Z9U9-VRN_XU) for more.  
+- Changed from async pipe to regular subscription in events component.  With async pipe, it is more difficult to show a message when the subscription returns no data. 
+- I show a 'Could not connect to server' message when an error occurs and I show a 'No events found' message when the backend database has no entries.  
 - I used [min] on the Date field although I am using Validators - better to use a custom Validator instead ? 
 - Using [min] is a lot easier to implement, but it is not consistent with how I am validating all the other fields.
 - Used a fair amount of components -> possible to clean up and have better component reuse?
@@ -121,17 +124,13 @@ ng test
 - After deleting the event, the backend sent a string like `Event ${id} deleted`.
 - This caused an error to be thrown in the frontend and this prevented the page from being reloaded as the complete callback would not run.
 - I changed the backend to send JSON, and now it works as intended. 
-- Could cap the event's image width to an even smaller amount - need object-fit:cover to preserve aspect ratio of image.
-- I used a mat-card-image attribute on each event image.
-- Changed from async pipe to regular subscription in events component.  With async pipe, it is more difficult to show a message when the subscription returns no data. 
-- I show a 'Could not connect to server' message when an error occurs and I show a 'No events found' message when the backend database has no entries.  
-- Angular 16 doesn't initialize a karma config file anymore.  Need to use `ng generate config karma`.
-- Use `xdescribe` to skip a test block. Use `xit` to skip an individual test. 
-- Old angular testing code used compileComponents() after TestBed.configureTestingModule() method.  Seems like this is no longer required ?
 - Replaced and removed karma-chrome-launcher
-- Added `codeCoverage: true` to angular.json 
+- Angular 16 doesn't initialize a karma config file anymore.  Need to use `ng generate config karma`.
+- Added `codeCoverage: true` to angular.json
+- Use `xdescribe` to skip a test block. Use `xit` to skip an individual test. 
+- Angular 15 testing code uses compileComponents() after the TestBed.configureTestingModule() method.  Seems like this is no longer required in Angular 16.
 -  I used window.location.reload in the event-detail component.  During testing, this causes a infinite loop.  I moved the call to window.location.reload into a reloadPage function.  Then I could mock that function to return nothing so that all tests run with no problems. 
-- Problem with update-event-form getEvent() error test - can fail depending on the random order of tests?
+- Problem with update-event-form getEvent() error test - not reliable - sometimes passed or failed - I changed the test and it seems better now
 
 ## Continued Development
 
@@ -139,7 +138,7 @@ ng test
 - Cypress
 - Custom Validator for min Date
 - Styling tweaks
-- Accessibility concerns
+- Accessibility concerns - cancel button color contrast, etc
 - Code Consistency
 
 ## Useful Resources
