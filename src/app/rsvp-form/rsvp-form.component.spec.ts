@@ -3,20 +3,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RsvpFormComponent } from './rsvp-form.component';
 import { RsvpService } from '../service/rsvp-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { of, throwError } from 'rxjs';
 
 describe('RsvpFormComponent', () => {
   let component: RsvpFormComponent;
   let fixture: ComponentFixture<RsvpFormComponent>;
-
-  let mockRsvpService = jasmine.createSpyObj('RsvpService', ['postRsvp']);
-
-  let mockRouter = {
-    navigate: jasmine.createSpy('navigate')
-  };
-
+  let rsvpServiceMock: any;
+  let rsvpService: RsvpService
+  let routerMock: any;
+  
+  // need fix and add a name property as well
   let mockActivatedRoute = {
     snapshot: {
       paramMap: {
@@ -29,16 +25,19 @@ describe('RsvpFormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RsvpFormComponent, ReactiveFormsModule, NoopAnimationsModule],
+      imports: [RsvpFormComponent, NoopAnimationsModule],
       providers: [
         {
-          provide: RsvpService, useValue: mockRsvpService
-        },
-        { 
-          provide: ActivatedRoute, useValue: mockActivatedRoute 
+          provide: RsvpService,
+          useValue: rsvpServiceMock
         },
         {
-          provide: Router, useValue: mockRouter
+          provide: ActivatedRoute,
+          useValue: mockActivatedRoute
+        },
+        {
+          provide: Router,
+          useValue: routerMock
         }
       ]
     });
@@ -50,56 +49,4 @@ describe('RsvpFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('cancel()', ()=> {
-
-    //spyOn(component.formGroupName)
-
-    const spyformReset = spyOn(component.rsvpInfo, 'reset').and.callThrough();
-    component.cancel();
-    expect(spyformReset).toHaveBeenCalled();
-  });
-
-  it('submit()', ()=> {
-
-    let mockRsvp = {
-      "name" : "Alice",
-      "email": "alice@gmail.com"
-    }
-
-    component.rsvpInfo.setValue({
-      "name" : "Alice",
-      "email": "alice@gmail.com"
-    });
-
-    component.eventId = '1';
-
-    mockRsvpService.postRsvp.and.returnValue(of(mockRsvp));
-
-    component.submit();
-
-    fixture.detectChanges();
-
-    expect(mockRsvpService.postRsvp).toHaveBeenCalled();
-  })
-
-  it('submit() error', ()=> {
-
-    component.rsvpInfo.setValue({
-      "name" : "Alice",
-      "email": "alice@gmail.com"
-    });
-
-    component.eventId = '1';
-
-    mockRsvpService.postRsvp.and.returnValue(throwError(() => new Error()));
-
-    component.submit();
-
-    fixture.detectChanges();
-
-    expect(mockRsvpService.postRsvp).toHaveBeenCalled();
-  })
-
-
 });

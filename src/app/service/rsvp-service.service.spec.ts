@@ -1,50 +1,70 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { RsvpService } from './rsvp-service.service';
+import { of } from 'rxjs';
 
 describe('RsvpService', () => {
   let service: RsvpService;
 
-  let testingController: HttpTestingController;
+  let httpClientSpy: any;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
-    });
-    service = TestBed.inject(RsvpService);
-    testingController = TestBed.inject(HttpTestingController);
+
+    httpClientSpy = {
+      post: jest.fn(),
+      delete: jest.fn()
+    }
+
+    service = new RsvpService(httpClientSpy);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
+  it('postEvent', ()=> {
 
-  it('postRsvp()', () => {
-    let payload = {
-      "name": "mark",
-      "email": "mark@gmail.com",
+    const response = {
+      "rsvpId": 1,
+      "name": "Jim",
+      "email": "jim@gmail.com",
     };
-    service.postRsvp('1', payload).subscribe((data: any) => {
-      expect(data).toBeTruthy();
-      expect(data.name).toBe('mark');
-    })
 
-    const mockReq = testingController.expectOne("http://localhost:8080/events/1/rsvps");
-    expect(mockReq.request.method).toEqual("POST");
-    mockReq.flush(payload);
+    const payload = {
+      "name": "Jim",
+      "email": "jim@gmail.com",
+    };
+
+    const eventId = '1';
+
+    const url = `http://localhost:8080/events/${eventId}/rsvps`;
+
+    jest.spyOn(httpClientSpy, 'post').mockReturnValue(of(response));
+
+    service.postRsvp(eventId, payload);
+
+    expect(httpClientSpy.post).toBeCalled();
+    expect(httpClientSpy.post).toBeCalledWith(url, payload);
   })
 
-  it('deleteRsvp()', () => {
-    service.deleteRsvp('1','2').subscribe((data: any) => {
-      expect(data).toBeNull();
-    })
+  it('deleteRsvp', ()=> {
 
-    const mockReq = testingController.expectOne("http://localhost:8080/events/1/rsvps/2");
-    expect(mockReq.request.method).toEqual("DELETE");
+    const response = {
+      "message": "Rsvp 1 deleted"
+    };
 
-    mockReq.flush(null);
+    const eventId = '1';
+
+    const rsvpId = '1';
+
+    const url = `http://localhost:8080/events/${eventId}/rsvps/${rsvpId}`;
+
+    jest.spyOn(httpClientSpy, 'delete').mockReturnValue(of(response));
+
+    service.deleteRsvp(eventId, rsvpId);
+
+    expect(httpClientSpy.delete).toBeCalled();
+    expect(httpClientSpy.delete).toBeCalledWith(url);
   })
 
 });

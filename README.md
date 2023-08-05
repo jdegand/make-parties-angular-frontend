@@ -141,6 +141,22 @@ ng test
 - Accessibility concerns - cancel button color contrast, etc
 - Code Consistency
 
+## Steps to replace Karma & Jasmine with Jest
+
+- (Optional) Remove all karma dependencies
+- Install @types/jest, jest, and jest-environment-jsdom
+- In tsconfig.spec.json, replace jasmine with jest
+- In angular.json, replace karma with jest in the test builder property
+- Remove all styling information after tsconfig property in angular.json
+
+## Problems when testing angular with jest
+
+- Limited help / examples to follow
+- Code coverage - adding codeCoverage to options in angular.json does not work
+- Standalone components - in app test warns app-navbar is not a known element - using custom_elements_schema in a schemas array does not stop this error 
+- Footer - extremely basic component -> test takes very long -> probably has same error as well
+- Highest Difficulty in testing with jest is lack of documentation.  When you get to something you are unsure of, not much material you can reference to figure out an implementation for your use case. 
+
 ## Useful Resources
 
 - [Flaticon](https://www.flaticon.com/)
@@ -195,3 +211,10 @@ ng test
 - [Stack Overflow](https://stackoverflow.com/questions/68607971/how-to-unit-test-window-location-reload-in-angular-12-unit-testing) - window location reload
 - [Stack Overflow](https://stackoverflow.com/questions/72138851/jasmine-window-location-reload-in-ngondestroy) - location reload
 - [Dev.to](https://dev.to/angular/understanding-async-tests-in-angular-f8n) - async tests in angular
+- [YouTube](https://www.youtube.com/watch?v=4z5IhNdonv8) - Angular Testing in 2023: Past, Present, and Future
+- [YouTube](https://www.youtube.com/watch?v=31or_m_xAA0) - Unit Testing | JEST tutorial for Angular | Zero to Hero | Crash Course | Techopsworld
+- [YouTube](https://www.youtube.com/watch?v=NsKBZuagLcg) - Angular unit testing using Jest
+- [Github](https://github.com/christiyan14/angular-tour-of-heroes-jest-100-coverage) - angular tour of heroes jest 100 coverage
+- [YouTube](https://www.youtube.com/watch?v=17iatftUkW4) - Testing en Angular con Jest 4 Componente
+- [Stack Overflow](https://stackoverflow.com/questions/39428132/custom-elements-schema-added-to-ngmodule-schemas-still-showing-error)- custom elements schema added to ngmodule schemas still showing error
+- [Stack Overflow](https://stackoverflow.com/questions/45917883/how-do-you-mock-activatedroute) - mock activatedRoute

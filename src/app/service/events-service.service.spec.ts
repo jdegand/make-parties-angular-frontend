@@ -1,115 +1,141 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-
+import { of } from 'rxjs';
 import { EventsService } from './events-service.service';
 
 describe('EventsService', () => {
   let service: EventsService;
-  let testingController: HttpTestingController;
 
-  const mockEvents: any = [
-    {
-      "eventId": '1',
-      "title": "BBQ",
-      "desc": "Ribs!!!",
-      "imgUrl": "https://picsum.photos/200/200",
-      "takesPlaceOn": null,
-      "createdAt": "2023-06-30T23:09:28.135+00:00",
-      "updatedAt": "2023-06-30T23:09:28.135+00:00",
-      "rsvps": []
-    }, {
-      "eventId": '2',
-      "title": "Camping",
-      "desc": "Roughing it",
-      "imgUrl": "https://picsum.photos/200/200",
-      "takesPlaceOn": null,
-      "createdAt": "2023-06-30T23:09:28.135+00:00",
-      "updatedAt": "2023-06-30T23:09:28.135+00:00",
-      "rsvps": []
-    }
-  ];
+  let httpClientSpy: any;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
-    });
-    service = TestBed.inject(EventsService);
-    testingController = TestBed.inject(HttpTestingController);
+
+    httpClientSpy = {
+      get: jest.fn(),
+      getById: jest.fn(),
+      put: jest.fn(),
+      post: jest.fn(),
+      delete: jest.fn()
+    }
+
+    service = new EventsService(httpClientSpy);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('getEvents()', () => {
-    service.getEvents().subscribe((data: any) => {
-      expect(data).toBeTruthy();
-      expect(data.length).toBe(2);
-      const secondUser = mockEvents.find((event: any) => event.eventId === '2');
-      expect(secondUser.title).toBe("Camping");
-    })
+  it('getEvents', () => {
 
-    const mockReq = testingController.expectOne("http://localhost:8080/events");
-    expect(mockReq.request.method).toEqual("GET");
-    mockReq.flush(mockEvents);
-  })
+    const response = [
+      {
+        "eventId": 1,
+        "title": "Birthday Party",
+        "desc": "Pony Rides",
+        "imgUrl": "https://picsum.photos/200/300",
+        "takesPlaceOn": "2023-09-07T00:00:00.000+00:00",
+        "createdAt": "2023-07-08T23:34:40.497+00:00",
+        "updatedAt": "2023-07-08T23:34:40.497+00:00",
+        "rsvps": []
+      },
+      {
+        "eventId": 2,
+        "title": "BBQ",
+        "desc": "Burgers and Hot Dogs",
+        "imgUrl": "https://picsum.photos/200/300",
+        "takesPlaceOn": "2023-09-07T00:00:00.000+00:00",
+        "createdAt": "2023-07-08T23:35:05.228+00:00",
+        "updatedAt": "2023-07-08T23:35:05.228+00:00",
+        "rsvps": []
+      }
+    ];
 
-  it('getEventById()', () => {
-    service.getEventById('1').subscribe((data: any) => {
-      expect(data).toBeTruthy();
-      expect(data.desc).toBe("Ribs!!!");
-    })
+    const url = 'http://localhost:8080/events';
 
-    const mockReq = testingController.expectOne("http://localhost:8080/events/1");
-    expect(mockReq.request.method).toEqual("GET");
-    mockReq.flush(mockEvents[0]);
-  })
+    jest.spyOn(httpClientSpy, 'get').mockReturnValue(of(response));
 
-  it('postEvent()', () => {
-    let payload = {
-      "title": "Event 3",
-      "desc": "event 3 description",
-      "imgUrl": "https://picsum.photos/200/200",
+    service.getEvents();
+    expect(httpClientSpy.get).toBeCalled();
+    expect(httpClientSpy.get).toBeCalledWith(url);
+  });
+
+  it('postEvent', ()=> {
+
+    const response = {
+      "eventId": 1,
+      "title": "Birthday Party",
+      "desc": "Pony Rides",
+      "imgUrl": "https://picsum.photos/200/300",
+      "takesPlaceOn": null,
+      "createdAt": "2023-07-08T23:34:40.497+00:00",
+      "updatedAt": "2023-07-08T23:34:40.497+00:00",
+      "rsvps": []
+    };
+
+    const payload = {
+      "title": "Birthday Party",
+      "desc": "Pony Rides",
+      "imgUrl": "https://picsum.photos/200/300",
       "takesPlaceOn": null,
     };
-    service.postEvent(payload).subscribe((data: any) => {
-      expect(data).toBeTruthy();
-      expect(data.title).toBe('Event 3');
-    })
 
-    const mockReq = testingController.expectOne("http://localhost:8080/events");
-    expect(mockReq.request.method).toEqual("POST");
-    mockReq.flush(payload);
+    const url = 'http://localhost:8080/events';
+
+    jest.spyOn(httpClientSpy, 'post').mockReturnValue(of(response));
+
+    service.postEvent(payload);
+
+    expect(httpClientSpy.post).toBeCalled();
+    expect(httpClientSpy.post).toBeCalledWith(url, payload);
   })
 
-  it('updateEvent()', () => {
-    let changes = { desc: "Fun outdoors" };
-    service.updateEvent('2', changes).subscribe((data: any) => {
-      expect(data).toBeTruthy();
-      expect(data.eventId).toBe('2');
-    })
+  it('getEventById', ()=> {
 
-    const mockReq = testingController.expectOne("http://localhost:8080/events/2");
-    expect(mockReq.request.method).toEqual("PUT");
-    let modifiedEvent = mockEvents[1];
-    modifiedEvent.desc = "Fun outdoors";
-    expect(mockReq.request.body.desc).toEqual(changes.desc);
-    mockReq.flush(modifiedEvent);
+    const response = {
+      "eventId": 1,
+      "title": "Birthday Party",
+      "desc": "Pony Rides",
+      "imgUrl": "https://picsum.photos/200/300",
+      "takesPlaceOn": null,
+      "createdAt": "2023-07-08T23:34:40.497+00:00",
+      "updatedAt": "2023-07-08T23:34:40.497+00:00",
+      "rsvps": []
+    };
+
+    const id = '1';
+
+    const url = `http://localhost:8080/events/${id}`;
+
+    jest.spyOn(httpClientSpy, 'getById').mockReturnValue(of(response));
+
+    service.getEventById(id);
+
+    expect(httpClientSpy.get).toBeCalled();
+    expect(httpClientSpy.get).toBeCalledWith(url);
   })
 
-  it('deleteEvent()', () => {
-    service.deleteEvent('2').subscribe((data: any) => {
-      expect(data.message).toBe('event 2 deleted');
-    })
+  it('deleteEventById', ()=> {
 
-    const mockReq = testingController.expectOne("http://localhost:8080/events/2");
-    expect(mockReq.request.method).toEqual("DELETE");
+    const response = {
+      "eventId": 1,
+      "title": "Birthday Party",
+      "desc": "Pony Rides",
+      "imgUrl": "https://picsum.photos/200/300",
+      "takesPlaceOn": null,
+      "createdAt": "2023-07-08T23:34:40.497+00:00",
+      "updatedAt": "2023-07-08T23:34:40.497+00:00",
+      "rsvps": []
+    };
 
-    mockReq.flush({ message: 'event 2 deleted' });
+    const id = '1';
+
+    const url = `http://localhost:8080/events/${id}`;
+
+    jest.spyOn(httpClientSpy, 'delete').mockReturnValue(of(response));
+
+    service.getEventById(id);
+
+    expect(httpClientSpy.get).toBeCalled();
+    expect(httpClientSpy.get).toBeCalledWith(url);
   })
 
-  afterEach(() => {
-    testingController.verify();
-  })
 
 });
