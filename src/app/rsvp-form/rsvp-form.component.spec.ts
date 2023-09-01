@@ -43,7 +43,7 @@ describe('RsvpFormComponent', () => {
     });
     fixture = TestBed.createComponent(RsvpFormComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    //fixture.detectChanges();
   });
 
   it('should create', () => {

@@ -154,8 +154,9 @@ ng test
 - Limited help / examples to follow
 - Code coverage - adding codeCoverage to options in angular.json does not work
 - Standalone components - in app test warns app-navbar is not a known element - using custom_elements_schema in a schemas array does not stop this error 
-- Footer - extremely basic component -> test takes very long -> probably has same error as well
-- Highest Difficulty in testing with jest is lack of documentation.  When you get to something you are unsure of, not much material you can reference to figure out an implementation for your use case. 
+- Footer - extremely basic component -> test takes very long -> probably has same error as well.  
+- Commented out fixture.detectChanges in most components -> for most components, it is unnecessary (a lot of tests are just basic truthy component tests) and the call may contribute to the sluggishness of the tests.    
+- Highest difficulty in testing angular with jest is lack of documentation.  Jest's documentation for angular is ancient.  Angular's site doesn't have much worthwhile either.  
 
 ## Useful Resources
 

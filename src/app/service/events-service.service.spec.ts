@@ -53,8 +53,8 @@ describe('EventsService', () => {
     jest.spyOn(httpClientSpy, 'get').mockReturnValue(of(response));
 
     service.getEvents();
-    expect(httpClientSpy.get).toBeCalled();
-    expect(httpClientSpy.get).toBeCalledWith(url);
+    expect(httpClientSpy.get).toHaveBeenCalled();
+    expect(httpClientSpy.get).toHaveBeenCalledWith(url);
   });
 
   it('postEvent', ()=> {
@@ -83,8 +83,8 @@ describe('EventsService', () => {
 
     service.postEvent(payload);
 
-    expect(httpClientSpy.post).toBeCalled();
-    expect(httpClientSpy.post).toBeCalledWith(url, payload);
+    expect(httpClientSpy.post).toHaveBeenCalled();
+    expect(httpClientSpy.post).toHaveBeenCalledWith(url, payload);
   })
 
   it('getEventById', ()=> {
@@ -108,8 +108,8 @@ describe('EventsService', () => {
 
     service.getEventById(id);
 
-    expect(httpClientSpy.get).toBeCalled();
-    expect(httpClientSpy.get).toBeCalledWith(url);
+    expect(httpClientSpy.get).toHaveBeenCalled();
+    expect(httpClientSpy.get).toHaveBeenCalledWith(url);
   })
 
   it('deleteEventById', ()=> {
@@ -133,8 +133,8 @@ describe('EventsService', () => {
 
     service.getEventById(id);
 
-    expect(httpClientSpy.get).toBeCalled();
-    expect(httpClientSpy.get).toBeCalledWith(url);
+    expect(httpClientSpy.get).toHaveBeenCalled();
+    expect(httpClientSpy.get).toHaveBeenCalledWith(url);
   })
 
 

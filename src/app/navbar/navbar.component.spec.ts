@@ -16,7 +16,7 @@ describe('NavbarComponent', () => {
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
     link = fixture.debugElement;
-    fixture.detectChanges();
+    //fixture.detectChanges();
   });
 
   it('should create', () => {

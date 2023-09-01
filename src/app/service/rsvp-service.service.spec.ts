@@ -1,5 +1,3 @@
-import { TestBed } from '@angular/core/testing';
-
 import { RsvpService } from './rsvp-service.service';
 import { of } from 'rxjs';
 
@@ -43,8 +41,8 @@ describe('RsvpService', () => {
 
     service.postRsvp(eventId, payload);
 
-    expect(httpClientSpy.post).toBeCalled();
-    expect(httpClientSpy.post).toBeCalledWith(url, payload);
+    expect(httpClientSpy.post).toHaveBeenCalled();
+    expect(httpClientSpy.post).toHaveBeenCalledWith(url, payload);
   })
 
   it('deleteRsvp', ()=> {
@@ -63,8 +61,8 @@ describe('RsvpService', () => {
 
     service.deleteRsvp(eventId, rsvpId);
 
-    expect(httpClientSpy.delete).toBeCalled();
-    expect(httpClientSpy.delete).toBeCalledWith(url);
+    expect(httpClientSpy.delete).toHaveBeenCalled();
+    expect(httpClientSpy.delete).toHaveBeenCalledWith(url);
   })
 
 });

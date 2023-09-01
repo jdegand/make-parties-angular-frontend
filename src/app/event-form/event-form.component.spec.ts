@@ -27,7 +27,7 @@ describe('EventFormComponent', () => {
     });
     fixture = TestBed.createComponent(EventFormComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    //fixture.detectChanges();
   });
 
   it('should create', () => {
