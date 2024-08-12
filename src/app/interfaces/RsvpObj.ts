@@ -1,5 +1,5 @@
 export interface RsvpObj {
-    rsvpId?: String;
-    name: String | null | undefined;
-    email?: String | null | undefined;
+    rsvpId?: string;
+    name?: string | null;
+    email?: string | null;
 }
