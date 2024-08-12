@@ -4,11 +4,10 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { EventsService } from '../service/events-service.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-event-form',
@@ -19,7 +18,7 @@ import { Router } from '@angular/router';
 })
 export class UpdateEventFormComponent {
 
-  constructor(private builder: FormBuilder, private route:ActivatedRoute, private eventsService: EventsService, private router:Router){}
+  constructor(private builder: FormBuilder, private route: ActivatedRoute, private eventsService: EventsService, private router: Router) { }
 
   eventId: String | undefined | null;
 
@@ -27,12 +26,12 @@ export class UpdateEventFormComponent {
 
   minDate = new Date(new Date().getTime()).toISOString().substring(0, 10);
 
-  async ngOnInit(){
+  async ngOnInit() {
     this.eventId = this.route.snapshot.paramMap.get("eventId");
 
     // make api request & set previousEventInfo - use previousEventInfo.title for initial value in builder group
 
-    if(this.eventId !==  null){
+    if (this.eventId !== null) {
       await this.getEvent(this.eventId);
     }
   }
@@ -64,21 +63,21 @@ export class UpdateEventFormComponent {
 
   }
 
-  submit(){
-    if(this.eventId && this.updatedEventInfo.valid){
+  submit() {
+    if (this.eventId && this.updatedEventInfo.valid) {
       this.eventsService.updateEvent(this.eventId, this.updatedEventInfo.value).subscribe({
         next: (v) => console.log(v),
         error: (e) => console.error(e),
         complete: () => {
           console.info('complete');
-          this.router.navigate(["/"]); 
+          this.router.navigate(["/"]);
         }
       });
     }
 
   }
 
-  cancel(){
+  cancel() {
     this.updatedEventInfo.reset();
   }
 
