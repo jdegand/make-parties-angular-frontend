@@ -4,53 +4,53 @@ A frontend designed to work with my [Spring Boot Make Parties backend](https://g
 
 ## Screenshots
 
-![](screenshots/angular-frontend-coverage.png)
+![Code Coverage Report](screenshots/angular-frontend-coverage.png)
 
 ***
 
-![](screenshots/angular-frontend-10.png)
+![Homepage](screenshots/angular-frontend-10.png)
 
 ***
 
-![](screenshots/angular-frontend-11.png)
+![New Event Form](screenshots/angular-frontend-11.png)
 
 ***
 
-![](screenshots/angular-frontend-12.png "mobile")
+![Mobile New Event Form](screenshots/angular-frontend-12.png "mobile")
 
 ***
 
-![](screenshots/angular-frontend-13.png)
+![Calendar picker](screenshots/angular-frontend-13.png)
 
 ***
 
-![](screenshots/angular-frontend-14.png "mobile")
+![Mobile Event View](screenshots/angular-frontend-14.png "mobile")
 
 ***
 
-![](screenshots/angular-frontend-15.png)
+![Empty RSVPs for event](screenshots/angular-frontend-15.png)
 
 ***
 
-![](screenshots/angular-frontend-16.png)
+![RSVP form](screenshots/angular-frontend-16.png)
 
 ***
 
-![](screenshots/angular-frontend-17.png "mobile")
+![RSVP form validation error](screenshots/angular-frontend-17.png "mobile")
 
 ***
 
-![](screenshots/angular-frontend-18.png "mobile 50% zoom")
+![RSVPs are listed underneath event card on mobile](screenshots/angular-frontend-18.png "mobile 50% zoom")
 
 ***
 
-![](screenshots/angular-frontend-19.png)
+![Update Event Form](screenshots/angular-frontend-19.png)
 
 ***
 
 ## Built With
 
-- [Angular](https://angular.io)
+- [Angular](https://angular.dev)
 - [Angular CLI](https://github.com/angular/angular-cli) - version 16.0.1.
 - [Angular Material](https://material.angular.io/)
 
@@ -58,14 +58,14 @@ A frontend designed to work with my [Spring Boot Make Parties backend](https://g
 
 The Spring Boot application runs by default on `localhost:8080` and has the following endpoints:
 
- - `http://localhost:8080/events` - GET / POST
- - `http://localhost:8080/events/${id}` - GET / PUT / DELETE
- - `http://localhost:8080/events/${eventId}/rsvps` - POST
- - `http://localhost:8080/events/${eventId}/rsvps/${rsvpId}` - DELETE 
+- `http://localhost:8080/events` - GET / POST
+- `http://localhost:8080/events/${id}` - GET / PUT / DELETE
+- `http://localhost:8080/events/${eventId}/rsvps` - POST
+- `http://localhost:8080/events/${eventId}/rsvps/${rsvpId}` - DELETE
 
 ### Running the Spring Boot Backend Application
 
-```bash 
+```bash
 
 git clone https://github.com/jdegand/make-parties-spring-backend.git
 
@@ -110,26 +110,26 @@ ng test
 - Could cap the event's image width to an even smaller amount - need object-fit:cover to preserve aspect ratio of image.
 - I used a mat-card-image attribute on each event image.
 - I originally used async pipe for the events component -> can be drawbacks to using async pipe -> See this [video](https://www.youtube.com/watch?v=Z9U9-VRN_XU) for more.  
-- Changed from async pipe to regular subscription in events component.  With async pipe, it is more difficult to show a message when the subscription returns no data. 
+- Changed from async pipe to regular subscription in events component.  With async pipe, it is more difficult to show a message when the subscription returns no data.
 - I show a 'Could not connect to server' message when an error occurs and I show a 'No events found' message when the backend database has no entries.  
-- I used [min] on the Date field although I am using Validators - better to use a custom Validator instead ? 
+- I used [min] on the Date field although I am using Validators - better to use a custom Validator instead ?
 - Using [min] is a lot easier to implement, but it is not consistent with how I am validating all the other fields.
 - Used a fair amount of components -> possible to clean up and have better component reuse?
 - On event-detail page, I added an extra link for the rsvp form.
 - Debatable if it is better to use routerLink over mat-buttons that are styled like links.
 - Angular material can have accessiblity issues.
-- I didn't go overboard on styling - using a sticky footer presented some difficulty on mobile as the footer overlaps the card when there are multiple events.  I changed the footer from being stacked in a flex column in the left corner to using row and  justify-content:space-between.  On mobile, this choice causes word wrap because the footer text is too long. 
+- I didn't go overboard on styling - using a sticky footer presented some difficulty on mobile as the footer overlaps the card when there are multiple events.  I changed the footer from being stacked in a flex column in the left corner to using row and `justify-content:space-between`.  On mobile, this choice causes word wrap because the footer text is too long.
 - Could have used modals instead of routing to a form for updating or creating rsvps.
 - I added a delete button to delete events on the event detail page.
 - After deleting the event, the backend sent a string like `Event ${id} deleted`.
 - This caused an error to be thrown in the frontend and this prevented the page from being reloaded as the complete callback would not run.
-- I changed the backend to send JSON, and now it works as intended. 
-- Replaced and removed karma-chrome-launcher
+- I changed the backend to send JSON, and now it works as intended.
+- Replaced and removed `karma-chrome-launcher`.
 - Angular 16 doesn't initialize a karma config file anymore.  Need to use `ng generate config karma`.
-- Added `codeCoverage: true` to angular.json
-- Use `xdescribe` to skip a test block. Use `xit` to skip an individual test. 
+- Added `codeCoverage: true` to `angular.json`.
+- Use `xdescribe` to skip a test block. Use `xit` to skip an individual test.
 - Angular 15 testing code uses compileComponents() after the TestBed.configureTestingModule() method.  Seems like this is no longer required in Angular 16.
--  I used window.location.reload in the event-detail component.  During testing, this causes a infinite loop.  I moved the call to window.location.reload into a reloadPage function.  Then I could mock that function to return nothing so that all tests run with no problems. 
+- I used `window.location.reload` in the `event-detail` component.  During testing, this causes a infinite loop.  I moved the call to window.location.reload into a reloadPage function.  Then I could mock that function to return nothing so that all tests run with no problems.
 - Problem with update-event-form getEvent() error test - not reliable - sometimes passed or failed - I changed the test and it seems better now
 
 ## Continued Development
@@ -144,7 +144,7 @@ ng test
 ## Useful Resources
 
 - [Flaticon](https://www.flaticon.com/)
-- [Lorem Picsum](https://picsum.photos/) 
+- [Lorem Picsum](https://picsum.photos/)
 - [Lorem Ipsum](https://loremipsum.io/21-of-the-best-placeholder-image-generators/) - placeholder image generators
 - [Wikimedia](https://commons.wikimedia.org/wiki/File:Image_not_available.png) - image not available
 - [Stack Overflow](https://stackoverflow.com/questions/45144023/angular-material-design-how-to-add-custom-button-color) - angular design custom button color
