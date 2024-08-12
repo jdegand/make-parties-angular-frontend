@@ -21,7 +21,7 @@ export class EventDetailComponent {
 
   event: any = undefined;
 
-  reloadPage(){
+  reloadPage() {
     window.location.reload();
   }
 
@@ -33,7 +33,7 @@ export class EventDetailComponent {
     }
   }
 
-  getEvent(eventId: String) {
+  getEvent(eventId: string) {
     return this.eventsService.getEventById(eventId).subscribe(
       {
         next: (data) => this.event = data,
@@ -43,7 +43,7 @@ export class EventDetailComponent {
     );
   }
 
-  deleteRsvp(eventId: String, rsvpId: String) {
+  deleteRsvp(eventId: string, rsvpId: string) {
     return this.rsvpService.deleteRsvp(eventId, rsvpId).subscribe(
       {
         next: (data) => console.log(data),
@@ -53,7 +53,7 @@ export class EventDetailComponent {
     );
   }
 
-  deleteEvent(eventId: String){
+  deleteEvent(eventId: string) {
     return this.eventsService.deleteEvent(eventId).subscribe(
       {
         next: (data) => console.log(data),
