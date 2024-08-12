@@ -20,7 +20,7 @@ export class UpdateEventFormComponent {
 
   constructor(private builder: FormBuilder, private route: ActivatedRoute, private eventsService: EventsService, private router: Router) { }
 
-  eventId: String | undefined | null;
+  eventId: string | undefined | null;
 
   previousEventInfo: any = undefined;
 
@@ -43,7 +43,7 @@ export class UpdateEventFormComponent {
     takesPlaceOn: this.builder.control('', [Validators.required]), // missed adding required for takesPlaceOn
   })
 
-  async getEvent(eventId: String) {
+  async getEvent(eventId: string) {
     return this.eventsService.getEventById(eventId).subscribe(
       {
         next: (data) => {

@@ -16,15 +16,15 @@ export class EventsService {
     return this.http.get('http://localhost:8080/events');
   }
 
-  deleteEvent(id: String){
+  deleteEvent(id: string){
     return this.http.delete(`http://localhost:8080/events/${id}`);
   }
 
-  getEventById(id: String){
+  getEventById(id: string){
     return this.http.get(`http://localhost:8080/events/${id}`);
   }
 
-  updateEvent(id: String, payload: any){
+  updateEvent(id: string, payload: any){
     return this.http.put(`http://localhost:8080/events/${id}`, payload);
   }
 

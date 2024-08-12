@@ -8,11 +8,11 @@ export class RsvpService {
 
   constructor(private http: HttpClient) { }
 
-  postRsvp(eventId: String | null | undefined, payload: any){
+  postRsvp(eventId: string | null | undefined, payload: any){
     return this.http.post(`http://localhost:8080/events/${eventId}/rsvps`, payload);
   }
 
-  deleteRsvp(eventId: String | null | undefined, rsvpId: String | null | undefined){
+  deleteRsvp(eventId: string | null | undefined, rsvpId: string | null | undefined){
     return this.http.delete(`http://localhost:8080/events/${eventId}/rsvps/${rsvpId}`);
   }
 }

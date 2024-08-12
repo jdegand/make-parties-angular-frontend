@@ -18,8 +18,8 @@ export class RsvpFormComponent {
 
   constructor(private builder: FormBuilder, private route: ActivatedRoute, private rsvpService: RsvpService, private router: Router) { }
 
-  eventName: String | undefined | null;
-  eventId: String | undefined | null;
+  eventName: string | undefined | null;
+  eventId: string | undefined | null;
 
   ngOnInit() {
     this.eventName = this.route.snapshot.paramMap.get("eventName");
