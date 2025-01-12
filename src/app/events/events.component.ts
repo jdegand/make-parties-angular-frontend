@@ -15,8 +15,6 @@ export class EventsComponent {
   events: any = undefined;
   error: any = undefined;
 
-  //event$: any = undefined;
-
   /*
   events = [{
     "eventId": 1,
@@ -43,16 +41,9 @@ export class EventsComponent {
 
   ngOnInit() {
 
-    //this.event$ = this.eventsService.getEvents();
-
-    // Using async pipe is fine -> closes subscription automatically / easy to implement / etc
-    // problem is trying to show something when it returns without data
-    // Ran into typing issues - the return value is an not array ? 
-
     this.eventsService.getEvents().subscribe(
       {
         next: (data) => {
-          //console.log(typeof data); // object -> problem because backend returns a list?
           this.events = data;
         },
         error: (e) => this.error = e,

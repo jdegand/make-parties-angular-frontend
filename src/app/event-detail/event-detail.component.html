@@ -3,13 +3,13 @@
         <img mat-card-image src={{event?.imgUrl}} alt="">
         <img mat-card-image *ngIf="!event?.imgUrl" src="assets/image-not-found.png" alt="" />
         <mat-card-header>
-          <mat-card-title>{{event?.title}}</mat-card-title>
+            <mat-card-title>{{event?.title}}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <h2>Join us on {{ event?.takesPlaceOn | date}}</h2>
-          <p>
-           {{event?.desc}}
-          </p>
+            <p>
+                {{event?.desc}}
+            </p>
         </mat-card-content>
         <mat-card-actions align="end">
             <a class="edit-button" mat-button href="/event/{{eventId}}/edit">Edit</a>
@@ -30,17 +30,3 @@
         </div>
     </div>
 </section>
-
-<!--
-<p>event-detail works!</p>
-<p>{{eventId}}</p>
-
-<section class="events-details-section">
-    <section class="events-details-list-section">
-       <div *ngFor="let item of event | keyvalue">
-        {{item.key}}:{{item.value}}
-       </div> 
-       <a class="edit-button" mat-button href="/event/{{eventId}}/edit">Edit</a>
-    </section>
-</section>
--->

@@ -49,7 +49,6 @@ describe('EventDetailComponent', () => {
     });
     fixture = TestBed.createComponent(EventDetailComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -202,9 +201,9 @@ describe('EventDetailComponent', () => {
 
     spyOn(fixture.componentInstance, 'reloadPage').and.callFake(() => null);
 
-    //window.location.reload = () => null; does not work
+    // window.location.reload = () => null; does not work
 
-    component.deleteRsvp('1','1');
+    component.deleteRsvp('1', '1');
 
     fixture.detectChanges();
 
@@ -234,9 +233,9 @@ describe('EventDetailComponent', () => {
 
     expect(component.event).toEqual(mockEvent);
 
-    mockRsvpService.deleteRsvp.and.returnValue(throwError(()=> new Error()));
+    mockRsvpService.deleteRsvp.and.returnValue(throwError(() => new Error()));
 
-    component.deleteRsvp('1','1');
+    component.deleteRsvp('1', '1');
 
     fixture.detectChanges();
 

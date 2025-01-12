@@ -52,9 +52,7 @@ describe('RsvpFormComponent', () => {
   });
 
   it('cancel()', ()=> {
-
-    //spyOn(component.formGroupName)
-
+    
     const spyformReset = spyOn(component.rsvpInfo, 'reset').and.callThrough();
     component.cancel();
     expect(spyformReset).toHaveBeenCalled();
