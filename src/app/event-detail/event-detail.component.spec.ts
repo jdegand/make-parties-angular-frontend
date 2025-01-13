@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { EventDetailComponent } from './event-detail.component';
 import { EventsService } from '../service/events-service.service';
@@ -172,43 +172,48 @@ describe('EventDetailComponent', () => {
     expect(mockEventsService.deleteEvent).toHaveBeenCalled();
   })
 
-  it('deleteRsvp()', () => {
+  it('should call reloadPage when deleteRsvp is called', fakeAsync(() => {
+    // the code coverage says the reloadPage method is uncovered
+    // tried many different combinations and nothing's changed
 
     mockEvent = {
-      "eventId": "1",
-      "title": "BBQ",
-      "desc": "Ribs!!!",
-      "imgUrl": "https://picsum.photos/200/200",
-      "takesPlaceOn": new Date("2023-09-09"),
-      "createdAt": "",
-      "updatedAt": "",
-      "rsvps": [{
-        "rsvpId": "1",
-        "name": "Jim",
-        "email": "jim@gmail.com"
+      eventId: "1",
+      title: "BBQ",
+      desc: "Ribs!!!",
+      imgUrl: "https://picsum.photos/200/200",
+      takesPlaceOn: new Date("2023-09-09"),
+      createdAt: "",
+      updatedAt: "",
+      rsvps: [{
+        rsvpId: "1",
+        name: "Jim",
+        email: "jim@gmail.com"
       }]
     };
 
-    mockEventsService.getEventById.and.returnValue(of(mockEvent));
+    // Spy on reloadPage method
+    spyOn(component, 'reloadPage').and.callFake(() => { });
 
-    fixture.detectChanges();
+    // Mock the service calls
+    mockEventsService.getEventById.and.returnValue(of(mockEvent));
+    mockRsvpService.deleteRsvp.and.returnValue(of(""));
+
+    // Initialize the component and set the event
+    component.ngOnInit();
+    tick(1000);  // Simulate the asynchronous passage of time
 
     expect(component.event).toEqual(mockEvent);
 
-    mockRsvpService.deleteRsvp.and.returnValue(of(""));
-
-    // reload causes a problem 
-
-    spyOn(fixture.componentInstance, 'reloadPage').and.callFake(() => null);
-
-    // window.location.reload = () => null; does not work
-
+    // Call deleteRsvp method
     component.deleteRsvp('1', '1');
 
-    fixture.detectChanges();
+    // Simulate the passage of time and ensure Observable completes
+    tick(1000);
 
+    // Verify expectations
     expect(mockRsvpService.deleteRsvp).toHaveBeenCalled();
-  })
+    expect(component.reloadPage).toHaveBeenCalled();
+  }));
 
   it('deleteRsvp() error', () => {
 

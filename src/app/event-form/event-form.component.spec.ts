@@ -70,7 +70,17 @@ describe('EventFormComponent', () => {
   });
 
   it('submit button is disabled initially', ()=> {
-    let submitBtn = el.nativeElement.querySelector('button[type="submit"]');
+
+    component.eventInfo.setValue({
+      "title": "",
+      "desc": "",
+      "imgUrl": "",
+      "takesPlaceOn": ""
+    });
+
+    fixture.detectChanges();
+
+    const submitBtn = el.nativeElement.querySelector('button[type="submit"]');
 
     expect(submitBtn.disabled).toBe(true);
   })
@@ -84,9 +94,7 @@ describe('EventFormComponent', () => {
       "takesPlaceOn": "2023-07-31"
     });
 
-    fixture.detectChanges();
-
-    let submitBtn = el.nativeElement.querySelector('button[type="submit"]');
+    const submitBtn = el.nativeElement.querySelector('button[type="submit"]');
 
     expect(submitBtn.disabled).toBe(false);
   })
