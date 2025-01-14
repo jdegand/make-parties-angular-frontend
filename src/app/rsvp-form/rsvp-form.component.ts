@@ -33,7 +33,7 @@ export class RsvpFormComponent {
 
   submit() {
     if (this.rsvpInfo.valid) {
-      
+      // could add a snackbar message(s) below 
       this.rsvpService.postRsvp(this.eventId, this.rsvpInfo.value).subscribe({
         next: (v) => console.log(v),
         error: (e) => console.error(e),

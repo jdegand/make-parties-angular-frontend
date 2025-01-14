@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { EventsService } from '../service/events-service.service';
+import { EventObj } from '../interfaces/EventObj';
 
 @Component({
   selector: 'app-update-event-form',
@@ -22,7 +23,7 @@ export class UpdateEventFormComponent {
 
   eventId: string | undefined | null;
 
-  previousEventInfo: any = undefined;
+  previousEventInfo: Partial<EventObj> | undefined;
 
   minDate = new Date(new Date().getTime()).toISOString().substring(0, 10);
 
@@ -40,13 +41,13 @@ export class UpdateEventFormComponent {
     title: this.builder.control('', [Validators.required]),
     desc: this.builder.control(''),
     imgUrl: this.builder.control(''),
-    takesPlaceOn: this.builder.control('', [Validators.required]), // missed adding required for takesPlaceOn
+    takesPlaceOn: this.builder.control('', [Validators.required]),
   })
 
   async getEvent(eventId: string) {
     return this.eventsService.getEventById(eventId).subscribe(
       {
-        next: (data) => {
+        next: (data: Partial<EventObj>) => {
           this.previousEventInfo = data;
 
           this.updatedEventInfo.patchValue({
