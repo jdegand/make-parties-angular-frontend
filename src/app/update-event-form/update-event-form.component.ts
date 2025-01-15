@@ -66,7 +66,7 @@ export class UpdateEventFormComponent {
 
   submit() {
     if (this.eventId && this.updatedEventInfo.valid) {
-      this.eventsService.updateEvent(this.eventId, this.updatedEventInfo.value).subscribe({
+      this.eventsService.updateEvent(this.eventId, this.updatedEventInfo.value as Partial<EventObj>).subscribe({
         next: (v) => console.log(v),
         error: (e) => console.error(e),
         complete: () => {

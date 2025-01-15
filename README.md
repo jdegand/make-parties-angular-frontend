@@ -131,6 +131,7 @@ ng test
 - Angular 15 testing code uses `compileComponents()` after the `TestBed.configureTestingModule()` method.  Seems like this is no longer required in Angular 16.
 - I used `window.location.reload` in the `event-detail` component.  During testing, this causes a infinite loop.  I moved the call to `window.location.reload` into a reloadPage function.  Then I could mock that function to return nothing so that all tests run with no problems.  However, the reloadPage function is said to be uncovered in the code coverage report. I have experimented with different scenarios and nothing has changed.
 - Upgraded from Angular 16 to 17.  There is a deprecation warning for `RouterTestingModule` in the app test.
+- For typings, I used a partial of the `EventObj` interface.  Instead of this implementation, I looked into switching to a slimmer interface with less properties. In lieu of the code duplication, I decided to prefer using a partial.  
 
 ## Continued Development
 

@@ -6,7 +6,7 @@ export interface EventObj {
     eventId: number; 
     imgUrl?: string; 
     rsvps?: RsvpObj[]; 
-    takesPlaceOn: string; 
+    takesPlaceOn?: string; 
     title: string; 
     updatedAt: string;
 }
