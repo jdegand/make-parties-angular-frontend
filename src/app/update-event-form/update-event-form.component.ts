@@ -21,7 +21,7 @@ export class UpdateEventFormComponent {
 
   constructor(private builder: FormBuilder, private route: ActivatedRoute, private eventsService: EventsService, private router: Router) { }
 
-  eventId: string | undefined | null;
+  eventId: string | null = null;
 
   previousEventInfo: Partial<EventObj> | undefined;
 
