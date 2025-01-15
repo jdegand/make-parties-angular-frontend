@@ -20,7 +20,7 @@
     </mat-card>
     <div>
         <div class="rsvps-header-section">
-            <h2>Rsvps ({{event?.rsvps.length}})</h2>
+            <h2>Rsvps ({{event?.rsvps?.length}})</h2>
             <a class="rsvp-button" mat-button href="/events/{{event?.eventId}}/{{event?.title}}/rsvp">Rsvp</a>
         </div>
         <div class="rsvp-item" *ngFor="let item of event?.rsvps">

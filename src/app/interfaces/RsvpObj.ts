@@ -1,5 +1,5 @@
 export interface RsvpObj {
-    rsvpId: number;
+    rsvpId: string;
     name: string; 
     email?: string;
 }
