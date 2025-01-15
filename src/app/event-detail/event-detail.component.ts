@@ -18,7 +18,7 @@ export class EventDetailComponent {
 
   constructor(private eventsService: EventsService, private route: ActivatedRoute, private rsvpService: RsvpService, private router: Router) { }
 
-  eventId: any;
+  eventId: string | null = null;
 
   event: Partial<EventObj> | undefined = undefined;
 
