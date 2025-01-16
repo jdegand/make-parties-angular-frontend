@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { RsvpService } from '../service/rsvp-service.service';
+import { EventObj } from '../interfaces/EventObj';
 
 @Component({
   selector: 'app-event-detail',
@@ -17,9 +18,9 @@ export class EventDetailComponent {
 
   constructor(private eventsService: EventsService, private route: ActivatedRoute, private rsvpService: RsvpService, private router: Router) { }
 
-  eventId: any;
+  eventId: string | null = null;
 
-  event: any = undefined;
+  event: Partial<EventObj> | undefined = undefined;
 
   reloadPage() {
     window.location.reload();

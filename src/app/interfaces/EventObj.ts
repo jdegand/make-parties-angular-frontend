@@ -1,12 +1,12 @@
 import { RsvpObj } from './RsvpObj'
 
 export interface EventObj {
-    eventId?: string,
-    title: string,
-    desc: string,
-    imgUrl: string,
-    takesPlaceOn: Date,
-    createdAt?: Date,
-    updatedAt?: Date,
-    rsvps: RsvpObj[]
+    createdAt: string; 
+    desc?: string; 
+    eventId: number; 
+    imgUrl?: string; 
+    rsvps?: RsvpObj[]; 
+    takesPlaceOn?: string; 
+    title: string; 
+    updatedAt: string;
 }

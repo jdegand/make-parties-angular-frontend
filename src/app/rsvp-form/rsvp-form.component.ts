@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RsvpService } from '../service/rsvp-service.service';
+import { RsvpObj } from '../interfaces/RsvpObj';
 
 @Component({
   selector: 'app-rsvp-form',
@@ -18,8 +19,8 @@ export class RsvpFormComponent {
 
   constructor(private builder: FormBuilder, private route: ActivatedRoute, private rsvpService: RsvpService, private router: Router) { }
 
-  eventName: string | undefined | null;
-  eventId: string | undefined | null;
+  eventName: string | null = null;
+  eventId: string | null = null;
 
   ngOnInit() {
     this.eventName = this.route.snapshot.paramMap.get("eventName");
@@ -32,9 +33,9 @@ export class RsvpFormComponent {
   })
 
   submit() {
-    if (this.rsvpInfo.valid) {
-      
-      this.rsvpService.postRsvp(this.eventId, this.rsvpInfo.value).subscribe({
+    if (this.rsvpInfo.valid && this.eventId) {
+      // could add a snackbar message(s) below 
+      this.rsvpService.postRsvp(this.eventId, this.rsvpInfo.value as Partial<RsvpObj>).subscribe({
         next: (v) => console.log(v),
         error: (e) => console.error(e),
         complete: () => {

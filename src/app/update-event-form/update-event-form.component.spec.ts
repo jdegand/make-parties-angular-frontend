@@ -47,7 +47,6 @@ describe('UpdateEventFormComponent', () => {
     });
     fixture = TestBed.createComponent(UpdateEventFormComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

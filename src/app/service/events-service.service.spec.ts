@@ -70,7 +70,7 @@ describe('EventsService', () => {
       "title": "Event 3",
       "desc": "event 3 description",
       "imgUrl": "https://picsum.photos/200/200",
-      "takesPlaceOn": null,
+      "takesPlaceOn": undefined,
     };
     service.postEvent(payload).subscribe((data: any) => {
       expect(data).toBeTruthy();

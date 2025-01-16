@@ -8,6 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { EventsService } from '../service/events-service.service';
 import { Router } from '@angular/router';
+import { EventObj } from '../interfaces/EventObj';
 
 @Component({
   selector: 'app-event-form',
@@ -31,7 +32,7 @@ export class EventFormComponent {
 
   submit() {
     if (this.eventInfo.valid) {
-      this.eventsService.postEvent(this.eventInfo.value).subscribe({
+      this.eventsService.postEvent(this.eventInfo.value as Partial<EventObj>).subscribe({
         next: (v) => console.log(v),
         error: (e) => console.error(e),
         complete: () => {
@@ -46,6 +47,5 @@ export class EventFormComponent {
   cancel() {
     this.eventInfo.reset();
   }
-
 
 }
