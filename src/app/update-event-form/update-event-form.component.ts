@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,9 +17,9 @@ import { EventObj } from '../interfaces/EventObj';
   templateUrl: './update-event-form.component.html',
   styleUrls: ['./update-event-form.component.css']
 })
-export class UpdateEventFormComponent {
+export class UpdateEventFormComponent implements OnInit {
 
-  constructor(private builder: FormBuilder, private route: ActivatedRoute, private eventsService: EventsService, private router: Router) { }
+  constructor(private builder: FormBuilder, private readonly route: ActivatedRoute, private readonly eventsService: EventsService, private readonly router: Router) { }
 
   eventId: string | null = null;
 

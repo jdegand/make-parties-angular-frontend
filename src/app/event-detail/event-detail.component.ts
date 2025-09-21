@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventsService } from '../service/events-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,9 +14,9 @@ import { EventObj } from '../interfaces/EventObj';
   templateUrl: './event-detail.component.html',
   styleUrls: ['./event-detail.component.css']
 })
-export class EventDetailComponent {
+export class EventDetailComponent implements OnInit {
 
-  constructor(private eventsService: EventsService, private route: ActivatedRoute, private rsvpService: RsvpService, private router: Router) { }
+  constructor(private readonly eventsService: EventsService, private readonly route: ActivatedRoute, private readonly rsvpService: RsvpService, private readonly router: Router) { }
 
   eventId: string | null = null;
 
@@ -63,5 +63,4 @@ export class EventDetailComponent {
       }
     );
   }
-
 }

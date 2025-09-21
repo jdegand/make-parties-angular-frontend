@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventsService } from '../service/events-service.service';
 import { CardComponent } from '../card/card.component';
@@ -12,15 +12,13 @@ import { ErrorObj } from '../interfaces/ErrorObj';
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.css']
 })
-export class EventsComponent {
-
+export class EventsComponent implements OnInit {
   events: EventObj[] = [];
   error: ErrorObj | null = null;
 
   constructor(private eventsService: EventsService) { }
 
   ngOnInit() {
-
     this.eventsService.getEvents().subscribe(
       {
         next: (data) => {
@@ -30,7 +28,6 @@ export class EventsComponent {
         complete: () => console.info('complete')
       }
     );
-
   }
   
 }

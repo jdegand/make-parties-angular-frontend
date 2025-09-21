@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,9 +15,9 @@ import { RsvpObj } from '../interfaces/RsvpObj';
   templateUrl: './rsvp-form.component.html',
   styleUrls: ['./rsvp-form.component.css']
 })
-export class RsvpFormComponent {
+export class RsvpFormComponent implements OnInit {
 
-  constructor(private builder: FormBuilder, private route: ActivatedRoute, private rsvpService: RsvpService, private router: Router) { }
+  constructor(private builder: FormBuilder, private readonly route: ActivatedRoute, private readonly rsvpService: RsvpService, private readonly router: Router) { }
 
   eventName: string | null = null;
   eventId: string | null = null;
