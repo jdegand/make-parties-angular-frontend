@@ -7,7 +7,7 @@ import { EventObj } from '../interfaces/EventObj';
 })
 export class EventsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   postEvent(payload: Partial<EventObj>){
     return this.http.post('http://localhost:8080/events', payload);

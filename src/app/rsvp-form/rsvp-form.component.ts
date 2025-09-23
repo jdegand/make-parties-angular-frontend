@@ -17,7 +17,7 @@ import { RsvpObj } from '../interfaces/RsvpObj';
 })
 export class RsvpFormComponent implements OnInit {
 
-  constructor(private builder: FormBuilder, private readonly route: ActivatedRoute, private readonly rsvpService: RsvpService, private readonly router: Router) { }
+  constructor(private readonly builder: FormBuilder, private readonly route: ActivatedRoute, private readonly rsvpService: RsvpService, private readonly router: Router) { }
 
   eventName: string | null = null;
   eventId: string | null = null;

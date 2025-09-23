@@ -7,7 +7,7 @@ import { RsvpObj } from '../interfaces/RsvpObj';
 })
 export class RsvpService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   postRsvp(eventId: string, payload: Partial<RsvpObj>){
     return this.http.post(`http://localhost:8080/events/${eventId}/rsvps`, payload);

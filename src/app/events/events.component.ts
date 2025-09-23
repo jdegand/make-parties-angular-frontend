@@ -16,7 +16,7 @@ export class EventsComponent implements OnInit {
   events: EventObj[] = [];
   error: ErrorObj | null = null;
 
-  constructor(private eventsService: EventsService) { }
+  constructor(private readonly eventsService: EventsService) { }
 
   ngOnInit() {
     this.eventsService.getEvents().subscribe(

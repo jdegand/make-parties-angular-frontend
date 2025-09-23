@@ -19,7 +19,7 @@ import { EventObj } from '../interfaces/EventObj';
 })
 export class EventFormComponent {
 
-  constructor(private builder: FormBuilder, private readonly eventsService: EventsService, private readonly router: Router) { }
+  constructor(private readonly builder: FormBuilder, private readonly eventsService: EventsService, private readonly router: Router) { }
 
   minDate = new Date(new Date().getTime()).toISOString().substring(0, 10);
 

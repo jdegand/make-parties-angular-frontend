@@ -19,7 +19,7 @@ import { EventObj } from '../interfaces/EventObj';
 })
 export class UpdateEventFormComponent implements OnInit {
 
-  constructor(private builder: FormBuilder, private readonly route: ActivatedRoute, private readonly eventsService: EventsService, private readonly router: Router) { }
+  constructor(private readonly builder: FormBuilder, private readonly route: ActivatedRoute, private readonly eventsService: EventsService, private readonly router: Router) { }
 
   eventId: string | null = null;
 
